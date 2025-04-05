@@ -1,0 +1,192 @@
+
+
+.Titulo{
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 20px 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Arial', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to right, #290099, #27bae7);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    text-decoration: none;
+    
+}
+
+.logo{
+    position: relative;
+    left: 10%;
+}
+
+.navegacion{
+   display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 10px 10px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Arial', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to right, #290099, #27bae7);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    gap: 25px;
+    position: absolute;
+    right: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 22%;
+    width: 640px;
+    height: 50px;
+   
+   
+}
+
+.navegacion a{
+    color: white;
+    text-decoration: none;
+    font-style: italic;
+font-size: 20px;
+
+}
+
+
+
+/* Button Despeable */
+.navbar {
+    background-color: #007acc;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   
+  }
+
+  .navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    font-size: 18px;
+    display: inline-block;
+    
+  }
+
+  .navbar a:hover {
+    background-color: #005f99;
+    border-radius: 5px;
+  }
+
+  /* Contenedor del menú */
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+  }
+
+  .nav-links li {
+    position: relative;
+  }
+
+  /* Submenú */
+  .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #007acc;
+    min-width: 160px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .dropdown a {
+    display: block;
+    padding: 10px 15px;
+  }
+
+  .dropdown a:hover {
+    background-color: #005f99;
+  }
+
+ 
+  .nav-links li:hover .dropdown {
+    display: block;
+  }
+
+  
+  main {
+    padding: 40px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 1.2rem;
+  }
+
+  /*FIN*/
+  
+
+  .logo{
+    width: 100px; /* Ajusta el tamaño según tus necesidades */
+    height: auto; /* Mantiene la proporción del logo */
+    margin-right: 10px; /* Espacio entre el logo y el texto */
+  }
+
+  /* Mejor que usar width: 800px */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    
+  }
+
+  nav ul {
+    display: flex;
+    flex-wrap: wrap; /* se acomodan en varias líneas si hay poco espacio */
+    justify-content: space-around;
+  }
+
+  /* Estilos para pantallas pequeñas */
+@media screen and (max-width: 768px) {
+    nav ul {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    nav ul li {
+      padding: 10px 0;
+    }
+  
+    h1 {
+      font-size: 24px;
+    }
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+
+  
