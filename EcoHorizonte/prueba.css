@@ -1,0 +1,108 @@
+/* Estilos generales */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  transition: background 0.3s, color 0.3s;
+}
+.dark-mode {
+  background: #121212;
+  color: white;
+}
+
+.navbar {
+  background: #333;
+  padding: 10px 20px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+.navbar-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo img {
+  width: 50px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  color: #00ffd5;
+  font-size: 1.5rem;
+  text-shadow: 0 0 10px #00ffd5;
+}
+.brand .icon {
+  width: 25px;
+}
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-style: italic;
+  font-weight: bold;
+}
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Botón modo oscuro */
+.dark-toggle {
+  background: transparent;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+/* Menú hamburguesa */
+.menu-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.menu-btn .bar {
+  width: 25px;
+  height: 3px;
+  background: white;
+  transition: 0.3s;
+}
+.menu-btn.open .bar:nth-child(1) {
+  transform: rotate(45deg) translateY(8px);
+}
+.menu-btn.open .bar:nth-child(2) {
+  opacity: 0;
+}
+.menu-btn.open .bar:nth-child(3) {
+  transform: rotate(-45deg) translateY(-8px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 80px;
+    right: 10px;
+    background: gold;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    display: none;
+  }
+  .nav-links.active {
+    display: flex;
+  }
+  .menu-btn {
+    display: flex;
+  }
+}

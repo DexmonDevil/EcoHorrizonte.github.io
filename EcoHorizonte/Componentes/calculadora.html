@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora de Energía Renovable</title>
+<link rel="stylesheet" href="/estilos/calculadora.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<nav class="navbar">
+    <div class="navbar-container">
+      <a class="img" href="/Componentes/inicio.html">
+        <img src="/Img/NextGen_Energy-removebg-preview.png" alt="Ir a otra página" width="70px" height="70px" />
+      </a>
+      <div class="navbar-title">EcoHorizonte 🌱</div>
+      <button class="menu-btn" id="menu-btn">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/Componentes/equipo.html">Equipo</a></li>
+        <li><a href="#">Informacion</a>
+          <ul class="submenu">
+            <li><a href="/Componentes/solar.html">Energia Solar</a></li>
+            <li><a href="/Componentes/hidraulica.html">Energia Hidraulica</a></li>
+            <li><a href="/Componentes/eolica.html">Energia Eolica</a></li>
+          </ul>
+        </li>
+        <li><a href="/Componentes/calculadora.html">Calculadora</a></li>
+        <li><a href="/Componentes/login.html">Login</a></li>
+      </ul>
+    </div>
+    <button id="toggle-dark">🌓</button>
+  </nav>
+
+<style>
+    /* Estilos generales */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  color: #ffffff;
+  margin: 0;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* Título principal */
+h1 {
+  font-size: 2.5rem;
+  color: #00ffcc;
+  text-shadow: 0 0 10px #00ffccaa;
+  margin-bottom: 30px;
+  text-align: center;
+}
+/* Subtítulos por categoría */
+h2 {
+  font-size: 1.6rem;
+  color: #ffd700;
+  border-bottom: 2px solid #ffd700;
+  margin-top: 30px;
+  padding-bottom: 5px;
+  width: 100%;
+  max-width: 600px;
+}
+/* Etiquetas e inputs */
+label {
+  display: block;
+  margin: 12px 0;
+  font-size: 1rem;
+  max-width: 600px;
+}
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: none;
+  background-color: #1a1a1a;
+  color: #00ffcc;
+  font-size: 1rem;
+  box-shadow: inset 0 0 4px #00ffcc44;
+  transition: all 0.3s ease;
+}
+input[type="number"]:focus {
+  outline: none;
+  box-shadow: 0 0 8px #00ffcc99;
+}
+/* Botón de calcular */
+button {
+  margin-top: 30px;
+  padding: 12px 24px;
+  background: #00ffcc;
+  color: #000;
+  border: none;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 255, 204, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 255, 204, 0.6);
+}
+/* Resultado */
+.result {
+  margin-top: 30px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  border-left: 6px solid #00ffcc;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 0 15px #00ffcc55;
+  color: #ffffff;
+  line-height: 1.6;
+}
+/* Responsive */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.3rem;
+  }
+  button {
+    width: 100%;
+  }
+}
+
+  select, button, input {
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px;
+      border-radius: 8px;
+      border: none;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    #chart-container {
+      width: 100%;
+      max-width: 900px;
+      margin: auto;
+      margin-top: 30px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+    }
+    th, td {
+      padding: 8px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+    th {
+      background-color: #3498db;
+      color: white;
+    }
+    #data-table {
+      display: none;
+    }
+
+/* Navegacion */
+
+/* Navegacion */
+.navbar {
+  background-color: #333;
+  padding: 15px 20px;
+  position: relative;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+/* Logo básico */
+.logo {
+font-size: 1.8rem;
+color: #00ffcc;
+margin-right: 10px;
+}
+
+/* Alinear todo bien */
+.navbar-container {
+display: flex;
+align-items: center;
+justify-content: space-between;
+position: relative;
+padding: 0 1rem;
+}
+
+
+/* Menu Despegable De Informacion */
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  align-content: center;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 1.1em;
+  padding: 10px 15px;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  background: linear-gradient(to right, #777777, #000000);
+  border-radius: 20px;
+}
+
+.submenu{
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #050101;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 1000;
+  border-radius: 10px;
+  list-style-type: none;
+  
+}
+
+.nav-links li:hover .submenu{
+  display: block;
+}
+
+
+
+.menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 1001;
+}
+
+.bar {
+  height: 3px;
+  width: 25px;
+  background-color: #ffffff;
+  transition: all 0.4s ease;
+}
+
+/* Navegación principal */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+  color: #00bcd4;
+}
+
+@media (max-width: 768px) {
+  .menu-btn {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: #1a1a1a;
+    width: 200px;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .nav-links.active {
+    transform: scaleY(1);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.menu-btn.open .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-btn.open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-btn.open .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+
+
+/* Título centrado */
+.navbar-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #00ffcc;
+  text-shadow: 0 0 10px #00ffccaa;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: fadeInDown 1s ease-out forwards;
+  opacity: 0;
+}
+
+/* Animación de entrada */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative; /* <-- importante */
+  width: 100%;
+}
+
+      /* Navegacion Fin */
+      
+      /* Cambiador de color */
+      
+      .dark-mode {
+        background-color: #140606;
+        color: #f0f0f0;
+      }
+      .dark-mode .navbar {
+        background-color: #1f1f1f;
+        box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+      }
+      .dark-mode h2, .dark-mode p, .dark-mode .stat-item p, .dark-mode footer {
+        color: #e0e0e0;
+      }
+      .dark-mode footer {
+        background-color: #1f1f1f;
+      }
+      .dark-mode h2 {
+        color: #e0e0e0;
+      }
+      .dark-mode p {
+        color: #cccccc;
+      }
+      .dark-mode footer {
+        background-color: #1f1f1f;
+        color: #cccccc;
+      }
+      .dark-mode table th {
+        background-color: #1a7a43;
+        color: #f0f0f0;
+      }
+      .dark-mode table td, .dark-mode table th {
+        border-color: #444;
+        color: #e0e0e0;
+      }
+      
+      /* ========================================
+       Boton modo oscuro
+         ======================================== */
+         #toggle-dark {
+          background: none;
+          border: none;
+          font-size: 1.5rem;
+          cursor: pointer;
+          transition: transform 0.3s;
+        }
+        #toggle-dark:hover {
+          transform: rotate(180deg);
+        }/* ========================================
+         Fin boton modo oscuro
+           ======================================== */
+</style>
+</head>
+<body>
+
+  <h1>Calculadora de Energía Renovable</h1>
+
+  <h2>☀️ Energía Solar</h2>
+  <label>Superficie disponible (m²): <input type="number" id="solar_area"></label>
+  <label>Radiación solar (kWh/m²/día): <input type="number" id="solar_radiation"></label>
+  <label>Eficiencia del panel (%): <input type="number" id="solar_eff"></label>
+
+  <h2>🌬️ Energía Eólica</h2>
+  <label>Velocidad del viento (m/s): <input type="number" id="wind_speed"></label>
+  <label>Potencia del aerogenerador (kW): <input type="number" id="wind_power"></label>
+  <label>Horas de viento al día: <input type="number" id="wind_hours"></label>
+
+  <h2>💧 Energía Hidráulica</h2>
+  <label>Caudal de agua (m³/s): <input type="number" id="flow_rate"></label>
+  <label>Altura de caída (m): <input type="number" id="head"></label>
+  <label>Eficiencia del sistema (%): <input type="number" id="hydro_eff"></label>
+
+  <button onclick="calcularEnergia()">Calcular Energía</button>
+
+  <div class="result" id="result"></div>
+
+  
+  <h1>Visualización de Energía Renovable (1965 - 2022)</h1>
+
+  <div style="text-align:center;">
+    <label for="energyType">Selecciona una fuente de energía:</label>
+    <select id="energyType">
+      <option value="solar">Solar</option>
+      <option value="eolica">Eólica</option>
+      <option value="hidraulica">Hidráulica</option>
+      <option value="geotermica">Geotérmica</option>
+    </select>
+
+    <label for="chartType">Tipo de gráfica:</label>
+    <select id="chartType">
+      <option value="line">Línea</option>
+      <option value="bar">Columnas</option>
+      <option value="pie">Pastel</option>
+    </select>
+
+    <button onclick="mostrarGrafica()">Graficar</button>
+    <button onclick="mostrarTabla()">Mostrar Todos los Datos</button>
+  </div>
+
+  <div id="chart-container">
+    <canvas id="energyChart"></canvas>
+  </div>
+
+  <div id="data-table">
+    <table id="tablaDatos">
+      <thead>
+        <tr>
+          <th>Año</th>
+          <th>Solar</th>
+          <th>Eólica</th>
+          <th>Hidráulica</th>
+          <th>Geotérmica</th>
+        </tr>
+      </thead>
+      <tbody id="tablaCuerpo"></tbody>
+    </table>
+  </div>
+
+  <div style="text-align: center; margin-top: 40px;">
+    <h2>Calculadora de Consumo Renovable</h2>
+    <p>Ingresa tu consumo eléctrico total (en kWh):</p>
+    <input type="number" id="consumoUsuario" placeholder="Ej: 500" />
+    <button onclick="calcularPorcentajeRenovable()">Calcular % Renovable</button>
+    <p id="resultadoPorcentaje" style="margin-top: 20px; font-weight: bold;"></p>
+  </div>
+
+  <h1>Consumo de Energía Renovable (Global)</h1>
+  <button onclick="toggleTabla()">Mostrar información</button>
+
+  <div id="output" style="display: none;"></div>
+
+  <script>
+    function calcularEnergia() {
+      // Solar
+      const area = parseFloat(document.getElementById('solar_area').value);
+      const radiation = parseFloat(document.getElementById('solar_radiation').value);
+      const solarEff = parseFloat(document.getElementById('solar_eff').value) / 100;
+      const solarEnergy = area * radiation * solarEff;
+
+      // Eólica
+      const windSpeed = parseFloat(document.getElementById('wind_speed').value);
+      const windPower = parseFloat(document.getElementById('wind_power').value);
+      const windHours = parseFloat(document.getElementById('wind_hours').value);
+      const windEnergy = windPower * windHours;
+
+      // Hidráulica
+      const flowRate = parseFloat(document.getElementById('flow_rate').value);
+      const head = parseFloat(document.getElementById('head').value);
+      const hydroEff = parseFloat(document.getElementById('hydro_eff').value) / 100;
+      const g = 9.81;
+      const hydroPower = flowRate * g * head * hydroEff / 1000; // en kW
+      const hydroEnergy = hydroPower * 24; // asumimos 24h de funcionamiento
+
+      // Resultados
+      document.getElementById('result').innerHTML = `
+        🌞 Solar: ${solarEnergy.toFixed(2)} kWh/día<br>
+        🌬️ Eólica: ${windEnergy.toFixed(2)} kWh/día<br>
+        💧 Hidráulica: ${hydroEnergy.toFixed(2)} kWh/día
+      `;
+    }
+
+  // Menú y modo oscuro
+  const menuBtn = document.getElementById("menu-btn");
+  const navLinks = document.getElementById("nav-links");
+  const toggleBtn = document.getElementById("toggle-dark");
+
+  menuBtn.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+    menuBtn.classList.toggle("open");
+  });
+
+  // Funcionalidad del cambio de tema
+ if (toggleBtn) {
+  toggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+  });
+ }
+
+ const datos = [
+    { año: 1965, solar: 0, eolica: 0, hidraulica: 120, geotermica: 15 },
+    { año: 1970, solar: 0, eolica: 0, hidraulica: 150, geotermica: 18 },
+    { año: 1980, solar: 0.5, eolica: 1, hidraulica: 200, geotermica: 20 },
+    { año: 1990, solar: 1, eolica: 3, hidraulica: 240, geotermica: 22 },
+    { año: 2000, solar: 5, eolica: 20, hidraulica: 280, geotermica: 25 },
+    { año: 2010, solar: 30, eolica: 100, hidraulica: 300, geotermica: 30 },
+    { año: 2015, solar: 70, eolica: 200, hidraulica: 320, geotermica: 35 },
+    { año: 2020, solar: 150, eolica: 350, hidraulica: 340, geotermica: 38 },
+    { año: 2022, solar: 200, eolica: 400, hidraulica: 360, geotermica: 40 }
+  ];
+
+  let chart;
+
+  function mostrarGrafica() {
+    const tipo = document.getElementById("energyType").value;
+    const tipoGrafica = document.getElementById("chartType").value;
+
+    const etiquetas = datos.map(d => d.año);
+    const valores = datos.map(d => d[tipo]);
+
+    const nombres = {
+      solar: "Energía Solar",
+      eolica: "Energía Eólica",
+      hidraulica: "Energía Hidráulica",
+      geotermica: "Energía Geotérmica"
+    };
+
+    if (chart) chart.destroy();
+
+    const opciones = {
+      responsive: true,
+      scales: tipoGrafica !== "pie" ? { y: { beginAtZero: true } } : {},
+      plugins: {
+        legend: { display: true }
+      }
+    };
+
+    const data = {
+      labels: tipoGrafica === "pie" ? etiquetas.slice(-5) : etiquetas,
+      datasets: [{
+        label: nombres[tipo],
+        data: tipoGrafica === "pie" ? valores.slice(-5) : valores,
+        backgroundColor: tipoGrafica === "pie"
+          ? ["#f39c12", "#e74c3c", "#3498db", "#2ecc71", "#9b59b6"]
+          : "rgba(75, 192, 192, 0.5)",
+        borderColor: tipoGrafica === "pie"
+          ? "white"
+          : "rgb(75, 192, 192)",
+        borderWidth: 1
+      }]
+    };
+
+    chart = new Chart(document.getElementById("energyChart"), {
+      type: tipoGrafica,
+      data: data,
+      options: opciones
+    });
+
+    document.getElementById("data-table").style.display = "none";
+  }
+
+  function mostrarTabla() {
+    const tbody = document.getElementById("tablaCuerpo");
+    tbody.innerHTML = "";
+
+    datos.forEach(d => {
+      const fila = `<tr>
+        <td>${d.año}</td>
+        <td>${d.solar}</td>
+        <td>${d.eolica}</td>
+        <td>${d.hidraulica}</td>
+        <td>${d.geotermica}</td>
+      </tr>`;
+      tbody.innerHTML += fila;
+    });
+
+    document.getElementById("data-table").style.display = "block";
+  }
+
+  function calcularPorcentajeRenovable() {
+    const consumo = parseFloat(document.getElementById("consumoUsuario").value);
+    if (isNaN(consumo) || consumo <= 0) {
+      document.getElementById("resultadoPorcentaje").textContent = "Por favor ingresa un valor válido.";
+      return;
+    }
+
+    const ultimoAnio = datos[datos.length - 1];
+    const totalRenovable = ultimoAnio.solar + ultimoAnio.eolica + ultimoAnio.hidraulica + ultimoAnio.geotermica;
+
+    const porcentaje = ((totalRenovable / consumo) * 100).toFixed(2);
+    document.getElementById("resultadoPorcentaje").textContent =
+      `Aproximadamente el ${porcentaje}% de tu consumo eléctrico podría ser cubierto por energías renovables.`;
+  }
+
+let tablaCargada = false;
+
+    async function toggleTabla() {
+      const output = document.getElementById('output');
+      const boton = document.querySelector('button');
+
+      if (output.style.display === 'none') {
+        if (!tablaCargada) {
+          try {
+            const response = await fetch('energy-consumption-by-source-and-country.csv');
+            if (!response.ok) throw new Error("No se pudo cargar el archivo CSV.");
+
+            const text = await response.text();
+            const rows = text.trim().split('\n');
+            const table = document.createElement('table');
+
+            rows.forEach((row, i) => {
+              const tr = document.createElement('tr');
+              const cols = row.split(',');
+
+              cols.forEach(col => {
+                const cell = document.createElement(i === 0 ? 'th' : 'td');
+                cell.textContent = col;
+                tr.appendChild(cell);
+              });
+
+              table.appendChild(tr);
+            });
+
+            output.appendChild(table);
+            tablaCargada = true;
+          } catch (error) {
+            output.innerHTML = `<p style="color:red;">Error: ${error.message}</p>`;
+          }
+        }
+
+        output.style.display = 'block';
+        boton.textContent = 'Ocultar información';
+      } else {
+        output.style.display = 'none';
+        boton.textContent = 'Mostrar información';
+      }
+    }
+  </script>
+
+</body>
+</html>

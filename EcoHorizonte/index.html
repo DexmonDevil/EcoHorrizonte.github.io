@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="contenedor-navbar"></div>
+    
+    <script>
+        fetch("Componentes/inicio.html")
+         .then(res => res.text())
+         .then(data => {
+            document.getElementById("contenedor-navbar").innerHTML = data;
+            const css = document.createElement("link");
+            css.rel = "stylesheet";
+            css.href = "/estilos/inicio.css";
+            document.head.appendChild(css);
+            const script = document.createElement("script");
+            script.src = "/scripts/inicio.js";
+            document.body.appendChild(script);
+
+         });
+
+
+    </script> 
+
+    <script src="scripts/inicio.js"></script>
+    <script defer src="scripts/eolica.js"></script>
+    <script defer src="scripts/faq.js"></script>
+    <script defer src="scripts/Mapa.js"></script>
+    <script defer src="scripts/mapaenergetico.js"></script>
+    <script defer src="scripts/modoOscuro.js"></script>
+    <script defer src="scripts/scrollTop.js"></script>
+</body>
+</html>

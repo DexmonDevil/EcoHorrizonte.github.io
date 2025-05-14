@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Energía Hidraulica| EcoHorizonte</title>
+  <link rel="stylesheet" href="/estilos/hidraulica.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a class="img" href="/Componentes/inicio.html">
+        <img src="/Img/NextGen_Energy-removebg-preview.png" alt="Ir a otra página" width="70px" height="70px" />
+      </a>
+      <div class="navbar-title">EcoHorizonte 🌱</div>
+      <button class="menu-btn" id="menu-btn">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/Componentes/equipo.html">Equipo</a></li>
+        <li><a href="#">Informacion</a>
+          <ul class="submenu">
+            <li><a href="/Componentes/solar.html">Energia Solar</a></li>
+            <li><a href="/Componentes/hidraulica.html">Energia Hidraulica</a></li>
+            <li><a href="/Componentes/eolica.html">Energia Eolica</a></li>
+          </ul>
+        </li>
+        <li><a href="/Componentes/calculadora.html">Calculadora</a></li>
+        <li><a href="/Componentes/login.html">Login</a></li>
+      </ul>
+    </div>
+    <button id="toggle-dark">🌓</button>
+  </nav>
+
+  <header class="hero">
+    <div class="carousel-container">
+      <div class="carousel" id="carousel">
+        <div class="carousel-item">
+          <img src="https://www.tecsaqro.com.mx/wp-content/uploads/2023/01/energia_hidroelectrica.jpg" alt="Energía Solar">
+        </div>
+        <div class="carousel-item">
+          <img src="https://plus.unsplash.com/premium_photo-1678446515230-27058cefe800?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGxhbnRhJTIwZGUlMjBlbmVyZyVDMyVBRGElMjBoaWRyb2VsJUMzJUE5Y3RyaWNhfGVufDB8fDB8fHww" alt="Energía Hidroeléctrica">
+        </div>
+        <div class="carousel-item">
+          <img src="https://keeui.com/wp-content/uploads/2021/06/pexels-ciboulette-574024-1-scaled.jpg" alt="Energía Eólica">
+        </div>
+      </div>
+      <button class="prev" id="prevBtn"></button>
+      <button class="next" id="nextBtn"></button>
+    </div>
+
+    <div class="hero-content">
+      <h1>Energía Hidraulica</h1>
+      <p>La energía hidráulica, también conocida como hidroeléctrica, es la energía que se obtiene del aprovechamiento del movimiento del agua para generar electricidad. Este proceso se realiza en centrales hidroeléctricas, donde la fuerza del agua (ya sea en ríos, cascadas o embalses) mueve turbinas que, a su vez, accionan generadores eléctricos</p>
+      <a href="#info" class="btn">Explora Más</a>
+    </div>
+  </header>
+
+ 
+  <section class="benefits">
+    <h2>Ventajas De La Energia Hidraulica</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Renovable y limpia</h3>
+        <p> La energía hidráulica se genera a partir del agua, un recurso renovable, y no produce emisiones contaminantes durante su funcionamiento.</p>
+      </div>
+      <div class="card">
+        <h3>Estable y confiable</h3>
+        <p>La producción de energía hidráulica puede ser planificada y controlada, a diferencia de otras energías renovables como la solar o la eólica, que dependen de factores ambientales. </p>
+      </div>
+      <div class="card">
+        <h3>Alto rendimiento</h3>
+        <p>Las centrales hidroeléctricas pueden alcanzar altos niveles de eficiencia en la conversión de la energía del agua en electricidad. </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="benefits">
+    <h2>Desventajas De La Energia Hidraulica</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Desplazamiento de comunidades</h3>
+        <p> Muchos proyectos han provocado el reasentamiento forzoso de poblaciones locales</p>
+      </div>
+      <div class="card">
+        <h3>Alto costo de construcción</h3>
+        <p>Las mega represas requieren inversiones multimillonarias y largos tiempos de construcción. </p>
+      </div>
+      <div class="card">
+        <h3>Riesgo de desastres</h3>
+        <p>Fugas o fallos estructurales pueden ocasionar inundaciones catastróficas aguas abajo. </p>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+  <main>
+    <section class="mapa">
+      <h2>Mapa Energético</h2>
+      <div id="mapa-electricidad"></div>
+      <p><strong>Selecciona una región para ver el consumo y la generación en tiempo real.</strong></p>
+    </section>
+
+    <section class="datos">
+      <h2>Datos en Tiempo Real</h2>
+      <div id="datos-electricidad">
+        <p><strong>Región:</strong> <span id="region">Colombia</span></p>
+        <p><strong>Consumo:</strong> <span id="consumo">6500 MW</span></p>
+        <p><strong>Generación renovable:</strong> <span id="renovable">58%</span></p>
+      </div>
+      <button onclick="cambiarRegion()">Cambiar Región</button>
+    </section>
+  </main>
+
+
+  <section class="info" id="info">
+    <div class="text">
+      <h2>¿Como se produce?</h2>
+      <p>La energía hidráulica, o hidroeléctrica, se produce aprovechando la fuerza del agua en movimiento, generalmente en ríos o embalses, para generar electricidad. Este proceso implica la construcción de presas y centrales hidroeléctricas que permiten controlar el flujo de agua y utilizarla para hacer girar turbinas conectadas a generadores eléctricos</p>
+
+      <p>La energía solar es una de las fuentes de energías renovables más fáciles de producir, especialmente la solar fotovoltaica, lo que está haciendo que se esté extendiendo su uso en las zonas climáticas con más horas de sol.</p>
+    </div>
+    <div class="image">
+      <img src="https://www.statkraft.cl/globalassets/0/.cl/lo-que-hacemos/como-se-genera-energia-hidroelectrica.png?width=920&height=516&quality=80"alt="Funcionamiento de la energía hidraucila">
+    </div>
+  </section>
+
+  <section class="cta">
+    <h4 id="fondo"></h4>
+    <a href="/Componentes/solar.html" class="btn">Volver</a>
+    <a href="/Componentes/eolica.html" class="btn">Siguiente</a>
+  </section>
+
+
+  <button id="suggestion-btn" class="suggestion-btn">💬</button>
+
+  <div id="suggestion-form" class="suggestion-form">
+    <h3>¡Déjanos tu sugerencia!</h3>
+    <textarea id="suggestion-text" placeholder="Escribe tu sugerencia aquí..."></textarea>
+    <button id="submit-suggestion">Enviar</button>
+    <button id="close-suggestion-form">Cerrar</button>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2025 NextGen Energy. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="/scripts/hidraulica.js"></script> 
+  <script defer src="js/modoOscuro.js"></script>
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</body>
+</html>

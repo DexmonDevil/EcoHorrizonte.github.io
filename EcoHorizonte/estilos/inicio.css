@@ -1,0 +1,937 @@
+.section-divider {
+  height: 5px;
+  background-color: #e9e9e9;
+  margin: 0;
+}
+
+.gif-energia {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.fondo-gif{
+  position: relative;
+  height: 200px;
+  text-align: center;
+}
+
+
+.landing{
+  background: linear-gradient( #0f0c29, #302b63, #24243e);
+  color: #ffffff;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.contenido-landing h1 {
+  font-size: 10rem;
+  margin-bottom: 10px;
+}
+
+.contenido-landing p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.boton-landing {
+  position: relative;
+  z-index: 2;
+  background-color: #20c5e2;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s;
+  display: inline-block;
+  margin-top: 60px;
+  box-shadow: .5rem .5rem 2rem rgba(0, 0, 0, 1);   
+  text-transform: uppercase;
+
+}
+
+.boton-landing:hover {
+  background-color: #199ab6;
+}
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+}
+
+
+.navbar {
+  background-color: #333;
+  padding: 15px 20px;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+/* Logo básico */
+.logo {
+font-size: 1.8rem;
+color: #00ffcc;
+margin-right: 10px;
+}
+
+/* Alinear todo bien */
+.navbar-container {
+display: flex;
+align-items: center;
+justify-content: space-between;
+position: relative;
+padding: 0 1rem;
+}
+
+
+/* Menu Despegable De Informacion */
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  align-content: center;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 1.1em;
+  padding: 10px 15px;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  background: linear-gradient(to right, #777777, #000000);
+  border-radius: 20px;
+}
+
+.submenu{
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #050101;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 1000;
+  border-radius: 10px;
+  list-style-type: none;
+  
+}
+
+.nav-links li:hover .submenu{
+  display: block;
+}
+
+
+
+.menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 1001;
+}
+
+.bar {
+  height: 3px;
+  width: 25px;
+  background-color: #ffffff;
+  transition: all 0.4s ease;
+}
+
+/* Navegación principal */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+  color: #00bcd4;
+}
+
+@media (max-width: 768px) {
+  .menu-btn {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: #1a1a1a;
+    width: 200px;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .nav-links.active {
+    transform: scaleY(1);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.menu-btn.open .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-btn.open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-btn.open .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+
+
+/* Título centrado */
+.navbar-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #00ffcc;
+  text-shadow: 0 0 10px #00ffccaa;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: fadeInDown 1s ease-out forwards;
+  opacity: 0;
+}
+
+/* Animación de entrada */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative; /* <-- importante */
+  width: 100%;
+}
+
+/* ========================================
+  Boton volver arriba
+   ======================================== */
+   #scrollTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 1370px;
+    display: none;
+    background: #2ecc71;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+  }/* ========================================
+  Fin de boton volver arriba
+   ======================================== */
+
+
+
+
+
+.Titulo {
+  text-align: center;
+  font-size: 2rem;
+  margin: 20px 0;
+  background: linear-gradient(to right, #fde400, #27bae7);
+}
+
+.card {
+  transform: translateY(20px);
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+
+}
+
+@keyframes fadeInUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.flip-card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+ place-items: center;
+  
+}
+
+.flip-card {
+ 
+  padding:20px;
+  width: 250px;
+  height: 280px;
+  perspective: 1000px;
+  border-radius: 20px;
+  background-color: transparent;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 1px 1px 5px rgb(25, 25, 25),
+             -5px -5px 5px rgb(60, 60, 60);
+ 
+}
+
+/* Efecto de bordes animados */
+.flip-card::before {
+  content: '';
+  position: absolute;
+  width: 120px;
+  height: 140%;
+  background-image: linear-gradient(180deg, rgb(25, 0, 255), rgb(251, 255, 0));
+  animation: rotBGimg 1s linear infinite;
+  z-index: 1;
+  transition: all 0.2s linear;
+}
+
+.flip-card::after {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  background: #ffffff; /* Fondo interior de la tarjeta */
+  border-radius: 16px;
+  z-index: 2;
+}
+
+@keyframes rotBGimg {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Parte interior para el flip */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  z-index: 3; /* Encima del fondo animado */
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.flip-card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.flip-card-back {
+  background-color: #eee;
+  color: black;
+  transform: rotateY(180deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+}
+
+
+
+/* Flip car fin */
+
+.footer {
+  background: linear-gradient(to right, #290099, #27bae7);
+  color: white;
+  text-align: center;
+  padding: 15px;
+    color: #ccc;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.dark-mode .footer .footer-links .footer-links a  {
+  background-color: #1f1f1f;
+  color: #cccccc;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+}
+
+@media (max-width: 600px) {
+  
+  .navegacion{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links a {
+    padding: 10px;
+    background-color: #444;
+    width: 100%;
+  }
+
+  .Titulo {
+    font-size: 1.5rem;
+  }
+}
+
+.introduccion{
+  text-align: ;
+}
+
+/* Cual es nuestro objetivo */
+/* Contenedor principal */
+.cual-es {
+  padding: 40px 30px;
+  background-color: #f0f8f5; /* Verde claro muy suave */
+  border-radius: 20px;
+  max-width: 1000px;
+  margin: 60px auto;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+/* Título principal */
+.objetivo {
+  font-size: 2.5rem;
+  color: #2e7d32; /* Verde ecológico */
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+/* Descripción principal */
+.promover {
+  font-size: 1.2rem;
+  color: #333;
+  font-weight: 500;
+  line-height: 1.8;
+  margin-bottom: 30px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Subtítulo de objetivos específicos */
+.importancia {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1b5e20;
+  margin-bottom: 20px;
+}
+/* Lista de resultados */
+.cual-es h3 li {
+  font-size: 1.1rem;
+  color: #2c2c2c;
+  font-weight: 500;
+  list-style-position: inside;
+  margin: 10px 0;
+  text-align: left;
+}
+/* Alineación izquierda de la lista dentro del contenedor */
+.cual-es h3 {
+  max-width: 800px;
+  margin: 0 auto;
+}
+/* Estilo para modo oscuro */
+body.dark-mode .cual-es {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
+body.dark-mode .objetivo {
+  color: #81c784;
+}
+body.dark-mode .promover,
+body.dark-mode .importancia,
+body.dark-mode .cual-es h3 li {
+  color: #dcdcdc;
+}/* Fin cual es nuestro objetivo */
+
+
+
+
+/* Que son las energias */
+/* Título principal */
+#que-son {
+  font-size: 2.5rem;
+  color: #0a3d62;
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+}
+/* Párrafo explicativo */
+#que-son2 {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #333;
+  max-width: 800px;
+  margin: 0 auto;
+}
+/* Soporte para modo oscuro */
+body.dark-mode .section {
+  background-color: #1c1c1c;
+  color: #f0f0f0;
+}
+body.dark-mode #que-son {
+  color: #4fc3f7;
+}
+body.dark-mode #que-son2 {
+  color: #cccccc;
+}/* fin de que son las energias */
+
+
+
+
+/* DATOS IMPACTANTES */
+.datos-impactantes {
+  background: #f1f8f4;
+  padding: 60px 20px;
+}
+.datos-texto{text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: center;
+
+}
+.dark-mode .datos-impactantes {
+  background: #1a1a1a;
+}
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+.impact-card {
+  background: white;
+  border-left: 8px solid var(--primary-color);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  max-width: 300px;
+  transition: transform 0.3s ease;
+}
+.dark-mode .impact-card {
+  background: #2b2b2b;
+  color: #e0e0e0;
+  border-left-color: #2ecc71;
+}
+.impact-card:hover {
+  transform: translateY(-10px);
+}
+.impact-card h3 {
+  font-size: 2rem;
+  color: #2ecc71;
+  margin-bottom: 10px;
+}/*Fin datos impactantes/
+
+Css: 
+
+
+/* ========================================
+  Mapa de potencial energetico
+   ======================================== */
+   .container {/*Contenedor de mapa de potencial*/
+    max-width: 1000px;
+    margin: auto;
+  }
+  .map-and-panel {/*Mapa de potencial y espacio de titulo*/
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  .map {/*Mapa de potencial*/
+    width: 500px;
+    height: auto;
+  }
+  polygon {/*Contorno y relleno de mapa de potencial*/
+    fill: #ccc;
+    stroke: #333;
+    stroke-width: 2;
+    cursor: pointer;
+    transition: fill 0.3s;
+  }
+  polygon:hover {/*Color de relleno de cada cuadro en mapa de potencial*/
+    fill: #2ecc71;
+  }
+  text {/*Tamaño de texto del mapa de potencial energetico*/
+    font-size: 16px;
+    font-weight: bold;
+    pointer-events: none;
+  }
+  .panel {/*Color del cuadro que contiene la informacion en mapa de potencial*/
+    flex: 1;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    min-width: 300px;
+  }
+  .bar-group {/*Cuadro que contiene los nombres de las energias en mapa de potencial*/
+    margin: 15px 0;
+  }
+  .bar-panel {/*Color solido de la barra del mapa*/
+    background: #dddddd;
+    border-radius: 8px;
+    height: 20px;
+    width: 320px;
+    overflow: hidden;
+  }
+  .fill {/*Lennar la barra del mapa*/
+    height: 100%;
+    border-radius: 8px;
+    transition: width 0.6s ease-in-out;
+  }
+  .fill.solar {/*Color de la barra solar*/
+    background: #f1c40f;
+    width: 0%;
+  }
+  .fill.eolica {/*Color de la barra eolica*/
+    background: #3498db;
+    width: 0%;
+  }
+  .fill.hidro {/*Color de la barra hidroelectrica*/
+    background: #2980b9;
+    width: 0%;
+  }
+  .recomendacion {/* Tamaño de la parte de abajo del recuadro del mapa de potencial */
+    margin-top: 20px;
+    font-style: italic;
+  }
+  body.dark-mode .result-item p {/* Color del texto en resultado de la calculadora */
+    color: #e0e0e0;
+  }
+  body.dark-mode polygon {/* Color mapa en modo oscuro, antes de seleccionar una opcion */
+    fill: #555;
+    stroke: #aaa;
+  }
+  body.dark-mode polygon:hover {/* Color hover del mapa antes de dar click */
+    fill: #27ae60;
+  }
+  body.dark-mode text {/* Color del texto del mapa */
+    fill: #fff; 
+  }
+  body.dark-mode .panel {/* Cuadro contenedor de las barras y contenido */
+    background: #1e1e1e;
+    color: #eee;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+  }
+  body.dark-mode .bar-panel {/* Barras del mapa */
+    background: #444444;
+  }
+  body.dark-mode .recomendacion {
+    color: #ccc;
+  }/* Fin de mapa de potencial energetico */
+
+  /* ===============================
+   📊 Estilos para Tabla Comparativa
+   =============================== */
+   .tabla-container {
+    overflow-x: auto;
+    margin-top: 30px;
+  }
+  .tabla-comparativa {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  /* 🟢 Encabezados */
+  .tabla-comparativa thead {
+    background-color: #2ecc71;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  /* 🔵 Celdas generales */
+  .tabla-comparativa th,
+  .tabla-comparativa td {
+    padding: 16px 20px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 1rem;
+  }
+  /* 🟡 Alternar colores de filas */
+  .tabla-comparativa tbody tr:nth-child(even) {
+    background-color: #f8f8f8;
+  }
+  /* 🔴 Hover en fila */
+  .tabla-comparativa tbody tr:hover {
+    background-color: #eafbf1;
+    transition: background-color 0.3s ease-in-out;
+  }
+  /* 🌙 Modo oscuro */
+  body.dark-mode .tabla-comparativa {
+    background-color: #1f1f1f;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
+  }
+  body.dark-mode .tabla-comparativa thead {
+    background-color: #27ae60;
+  }
+  body.dark-mode .tabla-comparativa th,
+  body.dark-mode .tabla-comparativa td {
+    color: #f0f0f0;
+    border-color: #444;
+  }
+  body.dark-mode .tabla-comparativa tbody tr:nth-child(even) {
+    background-color: #2a2a2a;
+  }
+  body.dark-mode .tabla-comparativa tbody tr:hover {
+    background-color: #1a3a27;
+  }/* ===============================
+   📊 Fin de Estilos para Tabla Comparativa
+   =============================== */
+  
+
+ /* ========================================
+  Preguntas Frecuentes
+   ======================================== */
+/* FAQ - Preguntas Frecuentes */
+.faq-container {
+  max-width: 800px;
+  margin: 30px auto;
+}
+
+.faq-item {
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border 0.3s;
+}
+
+.faq-question {
+  padding: 15px 20px;
+  background-color: #f9f9f9;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-question::after {
+  content: '+';
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+.faq-item.active .faq-question::after {
+  content: '−';
+}
+
+.faq-question:hover {
+  background-color: #f0f0f0;
+}
+
+.faq-answer {
+  padding: 0 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+  padding: 20px;
+  max-height: 300px;
+}
+
+/* 🌙 Modo oscuro para FAQs */
+.dark-mode .faq-item {
+  border-color: #444;
+}
+
+.dark-mode .faq-question {
+  background-color: #333;
+  color: #eee;
+}
+
+.dark-mode .faq-question:hover {
+  background-color: #3a3a3a;
+}
+
+.dark-mode .faq-answer {
+  color: #ccc;
+}/* ========================================
+  Fin de preguntas frecuentes.
+   ======================================== */
+
+
+/* ========================================
+  Modo oscuro general
+   ======================================== */
+   .dark-mode {
+    background-color: #140606;
+    color: #f0f0f0;
+  }
+  .dark-mode .navbar {
+    background-color: #1f1f1f;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+  }
+  .dark-mode h2, .dark-mode p, .dark-mode .stat-item p, .dark-mode footer {
+    color: #e0e0e0;
+  }
+  .dark-mode footer {
+    background-color: #1f1f1f;
+  }
+  .dark-mode h2 {
+    color: #e0e0e0;
+  }
+  .dark-mode p {
+    color: #cccccc;
+  }
+  .dark-mode footer {
+    background-color: #1f1f1f;
+    color: #cccccc;
+  }
+  .dark-mode table th {
+    background-color: #1a7a43;
+    color: #f0f0f0;
+  }
+  .dark-mode table td, .dark-mode table th {
+    border-color: #444;
+    color: #e0e0e0;
+  }/* ========================================
+    Fin de modo oscuro general
+     ======================================== */
+
+/* ========================================
+ Boton modo oscuro
+   ======================================== */
+   #toggle-dark {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  #toggle-dark:hover {
+    transform: rotate(180deg);
+  }/* ========================================
+   Fin boton modo oscuro
+     ======================================== */
+  
+.que-son{
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: center;
+
+}
+
+.section {
+  padding: 100px 20px;
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+
+h1{
+  color: #00ffcc;
+  text-shadow: 0 0 10px #00ffccaa;
+}
+
+.dark-mode footer {
+  background-color: #1f1f1f;
+  color: #cccccc;
+}
+

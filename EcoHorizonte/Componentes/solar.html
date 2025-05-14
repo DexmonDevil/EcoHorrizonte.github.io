@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Energía Solar | EcoHorizonte</title>
+  <link rel="stylesheet" href="/estilos/solar.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a class="img" href="/Componentes/inicio.html">
+        <img src="/Img/NextGen_Energy-removebg-preview.png" alt="Ir a otra página" width="70px" height="70px" />
+      </a>
+      <div class="navbar-title">EcoHorizonte 🌱</div>
+      <button class="menu-btn" id="menu-btn">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/Componentes/equipo.html">Equipo</a></li>
+        <li><a href="#">Informacion</a>
+          <ul class="submenu">
+            <li><a href="/Componentes/solar.html">Energia Solar</a></li>
+            <li><a href="/Componentes/hidraulica.html">Energia Hidraulica</a></li>
+            <li><a href="/Componentes/eolica.html">Energia Eolica</a></li>
+          </ul>
+        </li>
+        <li><a href="/Componentes/calculadora.html">Calculadora</a></li>
+        <li><a href="/Componentes/login.html">Login</a></li>
+      </ul>
+    </div>
+    <button id="toggle-dark">🌓</button>
+  </nav>
+
+  <button id="scrollTopBtn">↑</button>
+
+
+  <header class="hero">
+    <div class="carousel-container">
+      <div class="carousel" id="carousel">
+        <div class="carousel-item">
+          <img src="https://www.tecsaqro.com.mx/wp-content/uploads/2022/10/energia_solar.jpg" alt="Energía Solar">
+        </div>
+        <div class="carousel-item">
+          <img src="https://images.unsplash.com/photo-1497440001374-f26997328c1b?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZW5lcmdpYSUyMHNvbGFyfGVufDB8fDB8fHww" alt="Energía Hidroeléctrica">
+        </div>
+        <div class="carousel-item">
+          <img src="https://www.repsol.com/content/dam/repsol-corporate/es/conocenos/filas-placas-solares-campo.jpg" alt="Energía Eólica">
+        </div>
+      </div>
+      <button class="prev" id="prevBtn"></button>
+      <button class="next" id="nextBtn"></button>
+    </div>
+
+    <div class="hero-content">
+      <h1>Energía Solar</h1>
+      <p>La energía solar es una energía renovable obtenida a partir de la radiación electromagnética del Sol. Se trata de una energía renovable porque se obtiene de una fuente natural e inagotable, en este caso el Sol. Y por ello además de ser una fuente renovable, es una energía limpia y supone una alternativa a otros tipos de energía no renovables como la energía fósil o la energía nuclear.</p>
+      <a href="#info" class="btn">Explora Más</a>
+    </div>
+  </header>
+
+
+  
+
+  <section class="benefits">
+    <h2>Ventajas De la energia solar</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Alternativa energética</h3>
+        <p>Los paneles solares (sistemas fotovoltaicos) pueden ser usados en hogares, industrias y otras instalaciones, con lo que se reduce la dependencia por energía proveniente de combustibles fósiles.</p>
+      </div>
+      <div class="card">
+        <h3>Bajo costo de mantenimiento</h3>
+        <p>El mantenimiento de los sistemas colectores de energía solar es bajo una vez instalados.</p>
+      </div>
+      <div class="card">
+        <h3>Desarrollo tecnológico</h3>
+        <p>El desarrollo tecnológico de la industria de energía solar está en constante avance. Uno de los aspectos a mejorar es la fabricación de celdas fotovoltaicas más atractivas económicamente, más duraderas y de mayor eficiencia.</p>
+      </div>
+    </div>
+  </section>
+  <br><br>
+
+  <section class="benefits">
+  <h2>Desventajas De la energia solar</h2>
+  <div class="cards">
+    <div class="card">
+      <h3> Dependiente del clima</h3>
+      <p>En días nublados y con lluvia la eficiencia de captación de energía solar disminuye considerablemente. Por ejemplo, en los días más lluviosos de invierno se genera menos de una décima parte de lo que se puede obtener en un día radiante de verano.</p>
+    </div>
+    <div class="card">
+      <h3>Baja eficiencia de producción energética</h3>
+      <p>De toda la energía solar que llega a los paneles fotovoltaicos, en promedio solo la quinta parte se transforma en electricidad. Aunque es posible aumentar la eficiencia con diferentes materiales, el costo económico es muy elevado. Sin embargo, la eficiencia no podrá sobrepasar del 30% por la física de las tecnologías actuales.      </p>
+    </div>
+    <div class="card">
+      <h3>Alto costo de inversión</h3>
+      <p>La inversión inicial de compra del sistema fotovoltaico es elevada, pues requiere, aparte de los módulos fotovoltaicos, el inversor, el regulador de carga, el cableado, las baterías y la instalación.</p>
+  </div>
+</section>
+
+  <main>
+    <section class="mapa">
+      <h2>Mapa Energético</h2>
+      <div id="mapa-electricidad"></div>
+      <p>Selecciona una región para ver el consumo y la generación en tiempo real.</p>
+    </section>
+
+    <section class="datos">
+      <h2>Datos en Tiempo Real</h2>
+      <div id="datos-electricidad">
+        <p><strong>Región:</strong> <span id="region">Colombia</span></p>
+        <p><strong>Consumo:</strong> <span id="consumo">6500 MW</span></p>
+        <p><strong>Generación renovable:</strong> <span id="renovable">58%</span></p>
+      </div>
+      <button onclick="cambiarRegion()">Cambiar Región</button>
+    </section>
+  </main>
+
+
+  <section class="info" id="info">
+    <div class="text">
+      <h2>¿Como se produce?</h2>
+      <p>La energía solar se puede captar a través de células fotoeléctricas (que conforman los paneles fotovoltaicos que todos conocemos), heliostatos o colectores solares, que posteriormente la transforman en energía solar térmica (a través de la temperatura) o energía solar fotovoltaica (a través de la luz).</p>
+
+      <p>La energía solar es una de las fuentes de energías renovables más fáciles de producir, especialmente la solar fotovoltaica, lo que está haciendo que se esté extendiendo su uso en las zonas climáticas con más horas de sol.</p>
+    </div>
+    <div class="image">
+      <img src="https://mitratech.com.br/wp-content/uploads/2019/07/diagrama-funcionamento-R2.jpg.webp" alt="Funcionamiento de la energía solar">
+    </div>
+  </section>
+
+  <section class="cta">
+    <h4></h4>
+    <a href="/Componentes/inicio.html" class="btn">Volver</a>
+    <a href="hidraulica.html" class="btn">Siguiente</a>
+  </section>
+
+
+  <button id="suggestion-btn" class="suggestion-btn">💬</button>
+
+  <div id="suggestion-form" class="suggestion-form">
+    <h3>¡Déjanos tu sugerencia!</h3>
+    <textarea id="suggestion-text" placeholder="Escribe tu sugerencia aquí..."></textarea>
+    <button id="submit-suggestion">Enviar</button>
+    <button id="close-suggestion-form">Cerrar</button>
+  </div>
+  
+
+  <footer class="footer">
+    <p>&copy; 2025 NextGen Energy. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="/scripts/solar.js"></script> 
+  <script defer src="Js/mapaenergetico.js"></script>
+  <script defer src="/scripts/faq.js"></script>
+  <script defer src="js/scrollTop.js"></script>
+  <script defer src="js/modoOscuro.js"></script>
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+ </body>
+ </html>
